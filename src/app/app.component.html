@@ -1,7 +1,7 @@
 <h1 class="mt-3">Pipes <small>Angular</small></h1>
 <hr>
 
-<div class="row">
+<div class="row mb-5">
   <div class="col">
     <table class="table">
       <thead class="thead-dark">
@@ -13,16 +13,214 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ nombre }}</td>
+          <td>{{ name }}</td>
           <td> uppercase </td>
-          <td> {{ nombre | uppercase }}</td>
+          <td> {{ name | uppercase }}</td>
         </tr>
+
         <tr>
-          <td>{{ nombre }}</td>
+          <td>{{ name }}</td>
           <td> lowercase </td>
-          <td> {{ nombre | lowercase }}</td>
+          <td> {{ name | lowercase }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ name }}</td>
+          <td>slice:3</td>
+          <td>{{ name | slice:3 }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ name }}</td>
+          <td>slice:0:3</td>
+          <td>{{ name | slice:0:3 }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ name2 }}</td>
+          <td>customCapitalized</td>
+          <td>{{ name2 |  customCapitalized:true }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ name2 }}</td>
+          <td>customCapitalized</td>
+          <td>{{ name2 |  customCapitalized:false }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ arrayOfNumber }}</td>
+          <td>slice:1:5</td>
+          <td>{{ arrayOfNumber | slice:1:5 }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number</td>
+          <td>{{ PI | number }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number:'1.0-0'</td>
+          <td>{{ PI | number:'1.0-0' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number:'3.0-0'</td>
+          <td>{{ PI | number:'3.0-0' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number:'.0-2'</td>
+          <td>{{ PI | number:'.0-2' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td>number:'.0-2'</td>
+          <td>{{ PI | number:'.0-2' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ percentage }}</td>
+          <td>percent</td>
+          <td>{{ percentage | percent }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ percentage }}</td>
+          <td>percent:'2.2-2'</td>
+          <td>{{ percentage | percent:'2.2-2' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ salary }}</td>
+          <td>currency</td>
+          <td>{{ salary | currency }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ salary }}</td>
+          <td>currency:'EUR'</td>
+          <td>{{ salary | currency:'EUR' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ salary }}</td>
+          <td>currency:'CAD':'symbol-narrow'</td>
+          <td>{{ salary | currency:'CAD':'symbol-narrow' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ salary }}</td>
+          <td>currency:'EUR':'symbol':'0.0-0'</td>
+          <td>{{ salary | currency:'EUR':'symbol':'0.0-0' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ valuePromise }}</td>
+          <td>async</td>
+          <td>{{ valuePromise | async}}</td>
+        </tr>
+
+        <tr>
+          <td>{{ dateToday }}</td>
+          <td>date</td>
+          <td>{{ dateToday | date}}</td>
+        </tr>
+
+        <tr>
+          <td>{{ dateToday }}</td>
+          <td>date:'medium'</td>
+          <td>{{ dateToday | date:'medium' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ dateToday }}</td>
+          <td>date:'medium'</td>
+          <td>{{ dateToday | date:'short' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ dateToday }}</td>
+          <td>date:'medium'</td>
+          <td>{{ dateToday | date:'MMMM-dd' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ dateToday }}</td>
+          <td> date:'MMMM-dd':'':'en'</td>
+          <td>{{ dateToday | date:'MMMM-dd':'':'en' }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ dateToday }}</td>
+          <td>
+            <span class="mb-1 d-block">date:'MMMM-dd':'':'{{ language }}'</span>
+            <button (click)="language='es'" class="btn btn-outline-primary btn-sm mr-1">es</button>
+            <button (click)="language='en'" class="btn btn-outline-success btn-sm mr-1">en</button>
+            <button (click)="language='fr'" class="btn btn-outline-danger btn-sm">fr</button>
+          </td>
+          <td>{{ dateToday | date:'MMMM-dd':'': language }}</td>
+        </tr>
+
+        <tr>
+          <td>{{ name }}</td>
+          <td> <span class="d-block">password:{{ activar }}</span>
+            <button (click)="activar = !activar" class="btn btn-outline-primary btn-sm mr-1">enable/disable</button>
+          </td>
+          <td>{{ name | customHidePassword: activar}}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<h3>Slice on ngfor</h3>
+<hr>
+<div class="row mb-5">
+  <div class="col-6">
+    <h6>let item of arrayOfNumber | slice:5:20</h6>
+    <ul >
+      <li *ngFor="let item of arrayOfNumber | slice:5:20">{{ item }}</li>
+    </ul>
+  </div>
+  <div class="col-6">
+    <h6>let item of arrayOfHero | slice:2:4</h6>
+    <ul>
+      <li *ngFor="let item of arrayOfHero | slice:2:4">{{ item }}</li>
+    </ul>
+  </div>
+</div>
+
+
+<h3>Json</h3>
+<hr>
+<div class="row">
+  <div class="col mb-5">
+    <h6>hero | json</h6>
+    <pre>
+      {{ hero | json}}
+    </pre>
+  </div>
+</div>
+
+
+<h3>DOM seguro
+
+</h3>
+<hr>
+<div class="row mb-5">
+  <div class="col">
+    <iframe
+      width="560"
+      height="315"
+      [src]="videoUrl | domSave"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
   </div>
 </div>
